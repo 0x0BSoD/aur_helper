@@ -1,4 +1,4 @@
-# Litle AUR Helper "ah"
+# Little AUR Helper "ah"
 
 Required requests and tabulate
 
