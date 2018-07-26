@@ -1,3 +1,5 @@
+import os
+
 from json import loads
 from datetime import datetime as dt
 from tabulate import tabulate
@@ -9,9 +11,10 @@ def date_to_str(ds):
     return dt.fromtimestamp(ds).strftime("%Y-%m-%d")
 
 def check_desc_ln(desc):
-        if len(desc) > 80:
-            desc = desc[:77] + "..."
-        return desc
+    rows, columns = os.popen('stty size', 'r').read().split()
+    if len(desc) > int(columns)-55:
+        desc = desc[:int(columns)-55] + "..."
+    return desc
 
 def run(package, sort):
     AUR = "https://aur.archlinux.org/rpc/"
