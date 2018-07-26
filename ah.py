@@ -2,6 +2,7 @@
 import argparse
 from requests import get
 import lib.search as search
+import lib.info as info
 
 parser = argparse.ArgumentParser()
 
@@ -19,5 +20,4 @@ if args.action == "search":
 elif args.action == "install":
     pass
 elif args.action == "info":
-    pass
-
+    info.run(args.package_name)
