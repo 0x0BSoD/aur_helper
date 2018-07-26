@@ -108,6 +108,7 @@ def run(package):
                                 return 1
                             elif conf == "y":
                                 print("Installing...")
+                                # TODO Need made this if depended pkg not in pacman repo
                                 break
                             else:
                                 print("Input error -- yes(y)/no(n)")
