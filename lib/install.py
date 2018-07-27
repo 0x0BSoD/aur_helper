@@ -38,9 +38,9 @@ def run(package):
 
                     print(f"Downloading {package} source ...")
                     p = Popen(["wget", 
-                                pkg,
-                                "-O",
-                                TMP+package+".tar.gz"], stdout=DEVNULL, stderr=DEVNULL)
+                               pkg,
+                               "-O",
+                               TMP+package+".tar.gz"], stdout=DEVNULL, stderr=DEVNULL)
 
                     p.wait()
                     rc = p.returncode
@@ -52,8 +52,8 @@ def run(package):
                     print(f"Unpacking source ...")
                     chdir(TMP)
                     p = Popen(["tar", 
-                                "-xzf",
-                                package+".tar.gz"])
+                               "-xzf",
+                               package+".tar.gz"])
                     p.wait()
                     rc = p.returncode
                 
@@ -73,7 +73,7 @@ def run(package):
                     deps = []
 
                     if pkg_dep:
-                        print(f"Package Depends:")
+                        print(f"Package depends:")
                         for p in pkg_dep:
                             pkg = p.replace("\'", "")
                             p = Popen(["pacman", 
@@ -87,7 +87,7 @@ def run(package):
                             print("- " + pkg + f" -- {status}")
                 
                     if make_dep:
-                        print(f"Package build Depends:")
+                        print(f"Package build depends:")
                         for p in make_dep:
                             pkg = p.replace("\'", "")
                             p = Popen(["pacman", 
@@ -97,12 +97,13 @@ def run(package):
                             rc = p.returncode
                             status = "Installed" if rc == 0 else "Not Installed"
                             if status == "Not Installed":
+                                # TODO Need made this if depended pkg not in pacman repo
                                 deps.append(pkg)
                             print("- " + pkg + f" -- {status}")
                     
                     if not len(deps) == 0:
-                        print(f"Packages nett to be install: {deps}")
-                        conf = input("yes(y)/no(n)")
+                        print(f"Packages need to be install: {deps}")
+                        conf = input("y/n")
                         while True:
                             if conf == "n":
                                 return 1
@@ -111,7 +112,7 @@ def run(package):
                                 # TODO Need made this if depended pkg not in pacman repo
                                 break
                             else:
-                                print("Input error -- yes(y)/no(n)")
+                                print("Input error -- y/n")
                     
                     p = Popen(["makepkg", 
                                "-si"])

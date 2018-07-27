@@ -1,7 +1,5 @@
 from json import loads
 from datetime import datetime as dt
-from tabulate import tabulate
-from operator import itemgetter
 
 from requests import get
 
