@@ -113,7 +113,8 @@ def run(package, auto=0):
                                 print("Input error -- y/n")
                     
                     p = Popen(["makepkg", 
-                               "-si"])
+                               "-si",
+                               "--noconfirm"])
                     p.wait()
                     rc = p.returncode
 
