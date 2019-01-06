@@ -18,7 +18,7 @@ if args.action == "search":
     search.run(args.package_name, args.sort)
 
 elif args.action == "install":
-    install.run(args.package_name, args.count)
+    install.run(args.package_name, args.auto)
     
 elif args.action == "info":
     info.run(args.package_name)
