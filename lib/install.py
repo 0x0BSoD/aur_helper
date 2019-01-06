@@ -1,15 +1,10 @@
 from json import loads
-from datetime import datetime as dt
-from tabulate import tabulate
-from operator import itemgetter
 from subprocess import Popen, DEVNULL
 from os import path, makedirs, chdir
 from shutil import rmtree
-from ast import literal_eval as make_tuple
-
 from requests import get
 
-def run(package):
+def run(package, auto=0):
 
     AUR = "https://aur.archlinux.org"
     TMP = "/tmp/ah/"
@@ -103,7 +98,10 @@ def run(package):
                     
                     if not len(deps) == 0:
                         print(f"Packages need to be install: {deps}")
-                        conf = input("y/n")
+                        if auto == 0:
+                            conf = input("y/n")
+                        else:
+                            conf = "y"
                         while True:
                             if conf == "n":
                                 return 1
@@ -120,7 +118,7 @@ def run(package):
                     rc = p.returncode
 
                     if rc == 0:
-                        print("Packages succefuly installed")
+                        print("Packages successfully installed")
                     else:
                         print(f"Some error, code: {rc}")
                         return rc 
