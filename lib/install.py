@@ -114,7 +114,8 @@ def run(package, auto=0):
                     
                     p = Popen(["makepkg", 
                                "-si",
-                               "--noconfirm"])
+                               "--noconfirm",
+                               "--skippgpcheck"])
                     p.wait()
                     rc = p.returncode
 
